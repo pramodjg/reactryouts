@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '../assets/vite.svg'
 import heroImg from '../assets/hero.png'
+import infologo from '../assets/infopic.jpg'; 
 import './SimpleForm.css'
 
 function SimpleForm()
@@ -40,6 +41,7 @@ const handleReset = () => {
   return (
     <div className="App">
       <h3> Simple Form in ReactJS</h3>
+      <img src={infologo} width="240" height="240"></img>
       <form>
         <label htmlFor="username" >First Name</label>
         <input type="text" placeholder="Enter your name" id="username" value={userName} onChange={(e)=>setUserName(e.target.value)} />
