@@ -1,11 +1,8 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import Dashboard from '../Dashboard/Dashboard.jsx';
-function SignInForm() {
-  const navigate = useNavigate();
-
+function SignUpForm() {
   const [state, setState] = React.useState({
-    username: "",
+    name: "",
+    email: "",
     password: ""
   });
   const handleChange = evt => {
@@ -19,9 +16,11 @@ function SignInForm() {
   const handleOnSubmit = evt => {
     evt.preventDefault();
 
-    const { username, password } = state;
-    alert(`You are login with username: ${username} and password: ${password}`);
-    navigate('/dashboard');
+    const { name, email, password } = state;
+    alert(
+      `You are sign up with name: ${name} email: ${email} and password: ${password}`
+    );
+
     for (const key in state) {
       setState({
         ...state,
@@ -31,9 +30,9 @@ function SignInForm() {
   };
 
   return (
-    <div className="form-container sign-in-container">
+    <div className="form-container sign-up-container">
       <form onSubmit={handleOnSubmit}>
-        <h1>Sign in</h1>
+        <h1>Create Account</h1>
         <div className="social-container">
           <a href="#" className="social">
             <i className="fab fa-facebook-f" />
@@ -45,26 +44,32 @@ function SignInForm() {
             <i className="fab fa-linkedin-in" />
           </a>
         </div>
-        <span>or use your account</span>
+        <span>or use your email for registration</span>
         <input
           type="text"
-          placeholder="Username"
-          name="username"
-          value={state.username}
+          name="name"
+          value={state.name}
           onChange={handleChange}
+          placeholder="Name"
+        />
+        <input
+          type="email"
+          name="email"
+          value={state.email}
+          onChange={handleChange}
+          placeholder="Email"
         />
         <input
           type="password"
           name="password"
-          placeholder="Password"
           value={state.password}
           onChange={handleChange}
+          placeholder="Password"
         />
-        <a href="#">Forgot your password?</a>
-        <button>Sign In</button>
+        <button>Sign Up</button>
       </form>
     </div>
   );
 }
 
-export default SignInForm;
+export default SignUpForm;

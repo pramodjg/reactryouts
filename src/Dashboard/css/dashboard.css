@@ -1,0 +1,32 @@
+/* src/App.css */
+.app-container {
+  display: flexbox;
+  height: 100vh;
+}
+
+.menu-section {
+  width: 200px;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.menu-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-section li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.menu-section li.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.details-section {
+  flex-grow: 1;
+  padding: 20px;
+}

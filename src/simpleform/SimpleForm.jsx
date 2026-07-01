@@ -44,19 +44,19 @@ const handleReset = () => {
       <img src={infologo} width="240" height="240"></img>
       <form>
         <label htmlFor="username" >First Name</label>
-        <input type="text" placeholder="Enter your name" id="username" value={userName} onChange={(e)=>setUserName(e.target.value)} />
+        <input type="text" className='datafrminput' placeholder="Enter your name" id="username" value={userName} onChange={(e)=>setUserName(e.target.value)} />
         <label htmlFor='lastname'>Last Name</label>
-        <input type="text" placeholder="Enter your last name" id="lastname" value={lastName} onChange={(e)=>setLastName(e.target.value)}/>
+        <input type="text"  className='datafrminput' placeholder="Enter your last name" id="lastname" value={lastName} onChange={(e)=>setLastName(e.target.value)}/>
         <label htmlFor='email'>Email</label>
-        <input type="email" placeholder="Enter your email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+        <input type="email"  className='datafrminput' placeholder="Enter your email" id="email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
         <label htmlFor='mobile'>Mobile</label>
-        <input type="number" placeholder="Enter your mobile number" id="mobile" value={mobile} onChange={(e)=>setMobile(e.target.value)}/>
+        <input type="number"  className='datafrminput' placeholder="Enter your mobile number" id="mobile" value={mobile} onChange={(e)=>setMobile(e.target.value)}/>
 
         <label htmlFor='gender'>Gender</label>
       <div className='genderdiv'>
-        <input type="radio" name="gender" id="male" value="Male" onChange={(e)=>setGender(e.target.value)}/>Male
-        <input type="radio" name="gender" id="female" value="Female" onChange={(e)=>setGender(e.target.value)}/>Female
-        <input type="radio" name="gender" id="other" value="Other" onChange={(e)=>setGender(e.target.value)}/>Other
+        <input type="radio" name="gender" id="male"  className='datafrminput' value="Male" onChange={(e)=>setGender(e.target.value)}/>Male
+        <input type="radio" name="gender" id="female"  className='datafrminput' value="Female" onChange={(e)=>setGender(e.target.value)}/>Female
+        <input type="radio" name="gender" id="other"  className='datafrminput' value="Other" onChange={(e)=>setGender(e.target.value)}/>Other
         </div>
         <div className='buttondiv'>
         <button type='submit' className='submitbutton' onClick={(e)=>handleSubmit(e)}>Submit</button>
