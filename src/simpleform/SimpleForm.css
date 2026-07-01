@@ -9,7 +9,7 @@
   margin: auto;
   margin-top: 20px;
 }
-input
+.datafrminput
 {
   display: block; /* make the input a block element */
   width: 100%; /* make the input full width */
@@ -21,7 +21,7 @@ input
   border-width: 1px;
   
 }
-input::placeholder
+.datafrminput::placeholder
 {
   color: darkgrey;
   text-indent: 10px;

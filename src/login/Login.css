@@ -1,0 +1,62 @@
+
+
+.Login
+{
+    display: block;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: transform 0.2s;
+    width: 75%;    
+    text-align: center;
+    margin-top: 25%;
+    margin-left: 10%;
+    
+}
+
+input
+{
+  display: block; /* make the input a block element */
+  width: 100%; /* make the input full width */
+  padding-left: 10px;
+  padding-top: 10px; /* add padding to the top of the input */
+  padding-bottom: 10px; /* add padding to the bottom of the input */
+  border-radius: 20px;
+  height: 24px;
+  border-width: 1px;
+  margin-bottom: 10px;
+  
+}
+input::placeholder
+{
+  color: darkgrey;
+  text-indent: 10px;
+}
+
+button
+{
+    display: block;
+}
+
+.btnrow
+{
+    display: flex; /* make the div a flex container */
+  flex-direction: row; /* make the flex items go in a row */
+  width: 100%; /* make the div full width */
+  justify-content:center; /* make the flex items space around */
+  margin-top: 10px;
+}
+
+.submitlogin
+{
+ 
+  justify-content: center;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
