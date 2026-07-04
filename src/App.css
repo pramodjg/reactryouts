@@ -1,475 +1,542 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
-}
-
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
-
-/* CSS Custom Properties for Responsive Design */
-:root {
-  /* Breakpoints */
-  --mobile: 480px;
-  --tablet: 768px;
-  --desktop: 1024px;
-  --large: 1200px;
-  
-  /* Fluid spacing */
-  --spacing-xs: clamp(8px, 2vw, 12px);
-  --spacing-sm: clamp(12px, 3vw, 16px);
-  --spacing-md: clamp(16px, 4vw, 24px);
-  --spacing-lg: clamp(20px, 5vw, 32px);
-  --spacing-xl: clamp(24px, 6vw, 40px);
-  
-  /* Fluid typography */
-  --text-xs: clamp(10px, 2vw, 12px);
-  --text-sm: clamp(12px, 2.5vw, 14px);
-  --text-md: clamp(14px, 3vw, 16px);
-  --text-lg: clamp(18px, 4vw, 24px);
-  --text-xl: clamp(24px, 5vw, 32px);
-  --text-2xl: clamp(28px, 6vw, 40px);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background: #f6f5f7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Montserrat", sans-serif;
-  min-height: 100vh;
-  margin: 0;
-  padding: var(--spacing-md);
-}
-
-h1 {
-  font-weight: bold;
-  margin: 0;
-  font-size: var(--text-2xl);
-}
-
-h2 {
-  text-align: center;
-  font-size: var(--text-xl);
-}
-
-p {
-  font-size: var(--text-sm);
-  font-weight: 100;
-  line-height: 1.5;
-  letter-spacing: 0.5px;
-  margin: var(--spacing-md) 0 var(--spacing-lg);
-}
-
-span {
-  font-size: var(--text-xs);
-}
-
-a {
-  color: #333;
-  font-size: var(--text-sm);
-  text-decoration: none;
-  margin: var(--spacing-sm) 0;
-}
-
-button {
-  border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
-  color: #ffffff;
-  font-size: var(--text-sm);
-  font-weight: bold;
-  padding: var(--spacing-sm) var(--spacing-xl);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
-  min-height: 44px; /* Touch target size */
-  min-width: 44px;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-button:focus {
-  outline: none;
-}
-
-button.ghost {
-  background-color: transparent;
-  border-color: #ffffff;
-}
-
-form {
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 clamp(20px, 8vw, 50px);
-  height: 100%;
-  text-align: center;
-  width: 100%;
-}
-
-input {
-  background-color: #eee;
-  border: none;
-  padding: var(--spacing-sm) var(--spacing-md);
-  margin: var(--spacing-xs) 0;
-  width: 100%;
-  font-size: var(--text-md);
-  min-height: 44px; /* Touch target size */
-}
-
-.container {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-  position: relative;
-  overflow: hidden;
-  width: min(768px, 95vw);
-  min-height: min(480px, 80vh);
-  container-type: inline-size;
-}
-
-.form-container {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  transition: all 0.6s ease-in-out;
-}
-
-.sign-in-container {
-  left: 0;
-  width: 50%;
-  z-index: 2;
-}
-
-.sign-up-container {
-  left: 0;
-  width: 50%;
-  opacity: 0;
-  z-index: 1;
-}
-
-.overlay-container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  transition: transform 0.6s ease-in-out;
-  z-index: 100;
-}
-
-.overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 0 0;
-  color: #ffffff;
-  position: relative;
-  left: -100%;
-  height: 100%;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
-
-.overlay-panel {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 clamp(20px, 6vw, 40px);
-  text-align: center;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
-}
-
-.overlay-left {
-  transform: translateX(-20%);
-}
-
-.overlay-right {
-  right: 0;
-  transform: translateX(0);
-}
-
-.social-container {
-  margin: var(--spacing-md) 0;
-  display: flex;
-  gap: var(--spacing-sm);
-  justify-content: center;
-}
-
-.social-container a {
-  border: 1px solid #dddddd;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  height: clamp(35px, 8vw, 40px);
-  width: clamp(35px, 8vw, 40px);
-  min-height: 44px; /* Touch target size */
-  min-width: 44px;
-  font-size: clamp(14px, 3vw, 16px);
-}
-
-/* Container Queries for Responsive Layout */
-@container (max-width: 768px) {
-  .container {
-    min-height: min(600px, 90vh);
+/* ==========================================================================
+   BASE APP STYLES
+   ========================================================================== */
+   .App {
+    font-family: sans-serif;
+    text-align: center;
   }
   
-  .form-container {
-    width: 100%;
+  /* Import Google Font: Montserrat (regular + extra bold weights) */
+  @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+  
+  /* ==========================================================================
+     CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+     Centralized values for breakpoints, spacing, and typography so the
+     whole layout can scale consistently across screen sizes.
+     ========================================================================== */
+  :root {
+    /* Breakpoints (used as reference values / documentation —
+       actual responsiveness is handled by @media and @container below) */
+    --mobile: 480px;
+    --tablet: 768px;
+    --desktop: 1024px;
+    --large: 1200px;
+  
+    /* Fluid spacing: scales smoothly between a min and max value based on viewport width */
+    --spacing-xs: clamp(8px, 2vw, 12px);
+    --spacing-sm: clamp(12px, 3vw, 16px);
+    --spacing-md: clamp(16px, 4vw, 24px);
+    --spacing-lg: clamp(20px, 5vw, 32px);
+    --spacing-xl: clamp(24px, 6vw, 40px);
+  
+    /* Fluid typography: font sizes that grow/shrink responsively instead of using fixed breakpoints */
+    --text-xs: clamp(10px, 2vw, 12px);
+    --text-sm: clamp(12px, 2.5vw, 14px);
+    --text-md: clamp(14px, 3vw, 16px);
+    --text-lg: clamp(18px, 4vw, 24px);
+    --text-xl: clamp(24px, 5vw, 32px);
+    --text-2xl: clamp(28px, 6vw, 40px);
   }
   
-  .sign-in-container,
-  .sign-up-container {
-    width: 100%;
+  /* Use border-box everywhere so padding/border are included in element width/height,
+     preventing unexpected overflow */
+  * {
+    box-sizing: border-box;
   }
   
-  .overlay-container {
-    display: none;
-  }
-}
-
-@container (max-width: 480px) {
-  .container {
-    min-height: min(700px, 95vh);
-    border-radius: 8px;
-  }
-  
-  form {
-    padding: 0 var(--spacing-md);
-  }
-  
-  button {
-    padding: var(--spacing-xs) var(--spacing-lg);
-    font-size: var(--text-xs);
-  }
-}
-
-/* Mobile-specific styles using media queries */
-@media (max-width: 768px) {
+  /* ==========================================================================
+     PAGE / BODY LAYOUT
+     Centers the whole card (.container) both vertically and horizontally.
+     ========================================================================== */
   body {
-    padding: var(--spacing-sm);
-    height: auto;
-    min-height: 100vh;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 100%;
-  }
-  
-  .container.right-panel-active .sign-in-container {
-    transform: translateX(100%);
-  }
-  
-  .container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-  }
-  
-  .overlay-container {
-    display: none;
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: var(--spacing-xs);
+    background: #f6f5f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    min-height: 100vh; /* min-height (not height) so content can grow taller than the viewport if needed */
     margin: 0;
+    padding: var(--spacing-md);
   }
   
+  /* ==========================================================================
+     TYPOGRAPHY
+     ========================================================================== */
   h1 {
+    font-weight: bold;
+    margin: 0;
+    font-size: var(--text-2xl);
+  }
+  
+  h2 {
+    text-align: center;
     font-size: var(--text-xl);
   }
   
   p {
-    margin: var(--spacing-sm) 0;
-  }
-  
-  .social-container {
-    margin: var(--spacing-sm) 0;
-  }
-  
-  input {
-    padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--text-sm);
-  }
-}
-
-/* Landscape mobile optimization */
-@media (max-height: 600px) and (orientation: landscape) {
-  body {
-    padding: var(--spacing-xs);
+    font-weight: 100;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    margin: var(--spacing-md) 0 var(--spacing-lg);
   }
   
-  .container {
-    min-height: min(500px, 95vh);
-  }
-  
-  form {
-    padding: 0 var(--spacing-sm);
-    justify-content: flex-start;
-    overflow-y: auto;
-  }
-  
-  .social-container {
-    margin: var(--spacing-xs) 0;
-  }
-  
-  input {
-    margin: 4px 0;
-    padding: 8px 12px;
-  }
-}
-
-/* Large screen optimizations */
-@media (min-width: 1200px) {
-  .container {
-    width: min(900px, 80vw);
-    min-height: 550px;
-  }
-}
-
-/* Reduced motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  button {
-    border-width: 2px;
-  }
-  
-  input {
-    border: 1px solid #000;
-  }
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #121212;
-  }
-  
-  .container {
-    background-color: #1e1e1e;
-    color: #ffffff;
-  }
-  
-  form {
-    background-color: #2d2d2d;
-    color: #ffffff;
-  }
-  
-  input {
-    background-color: #3d3d3d;
-    color: #ffffff;
-    border: 1px solid #555;
+  span {
+    font-size: var(--text-xs);
   }
   
   a {
-    color: #bb86fc;
+    color: #333;
+    font-size: var(--text-sm);
+    text-decoration: none;
+    margin: var(--spacing-sm) 0;
   }
-}
-
-footer {
-  background-color: #222;
-  color: #fff;
-  font-size: var(--text-xs);
-  bottom: 0;
-  position: fixed;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 999;
-  padding: var(--spacing-xs);
-}
-
-footer p {
-  margin: var(--spacing-xs) 0;
-  font-size: var(--text-xs);
-}
-
-footer i {
-  color: red;
-}
-
-footer a {
-  color: #3c97bf;
-  text-decoration: none;
-}
-
-/* Footer responsiveness */
-@media (max-width: 768px) {
-  footer {
+  
+  /* ==========================================================================
+     BUTTONS
+     ========================================================================== */
+  button {
+    border-radius: 20px;
+    border: 1px solid #ff4b2b;
+    background-color: #ff4b2b;
+    color: #ffffff;
+    font-size: var(--text-sm);
+    font-weight: bold;
+    padding: var(--spacing-sm) var(--spacing-xl);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    min-height: 44px; /* Touch target size — meets accessibility guidance for tappable elements */
+    min-width: 44px;
+  }
+  
+  /* Small "press" feedback animation on click */
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Remove default browser focus ring (Note: consider a custom focus style for accessibility) */
+  button:focus {
+    outline: none;
+  }
+  
+  /* Secondary/transparent button variant, typically used on the colored overlay panel */
+  button.ghost {
+    background-color: transparent;
+    border-color: #ffffff;
+  }
+  
+  /* ==========================================================================
+     FORM
+     Each form (sign-in / sign-up) fills its container and centers its fields.
+     ========================================================================== */
+  form {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 clamp(20px, 8vw, 50px);
+    height: 100%;
+    text-align: center;
+    width: 100%;
+  }
+  
+  /* ==========================================================================
+     CARD CONTAINER
+     The main rounded card that holds both sign-in and sign-up panels plus
+     the sliding color overlay. `container-type: inline-size` enables the
+     @container queries defined further down.
+     ========================================================================== */
+  .container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     position: relative;
-    margin-top: var(--spacing-md);
+    overflow: hidden; /* clips the sliding panels so they don't spill outside the rounded card */
+    width: min(768px, 95vw); /* never exceeds 768px, but shrinks on narrow viewports */
+    min-height: min(480px, 80vh);
+    container-type: inline-size; /* turns this element into a container query context */
   }
-}
-
-/* Animation keyframes */
-@keyframes show {
-  0%,
-  49.99% {
-    opacity: 0;
+  
+  /* ==========================================================================
+     SLIDING FORM PANELS
+     Sign-in and sign-up forms are stacked on top of each other; toggling
+     `.right-panel-active` on `.container` slides/fades between them.
+     ========================================================================== */
+  .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+  }
+  
+  .sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2; /* sits above sign-up by default */
+  }
+  
+  .sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0; /* hidden until the "right panel active" state fades it in */
     z-index: 1;
   }
-
-  50%,
-  100% {
+  
+  /* ==========================================================================
+     COLORED OVERLAY (the sliding red/pink panel with call-to-action text)
+     ========================================================================== */
+  .overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100; /* stays above the forms while sliding */
+  }
+  
+  .overlay {
+    background: #ff416c; /* fallback for browsers without gradient support */
+    background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c); /* Safari/older WebKit */
+    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    left: -100%; /* shifts the double-width gradient so the correct half shows */
+    height: 100%;
+    width: 200%; /* double width lets the overlay slide without revealing empty space */
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  /* Text/content panels inside the overlay (left = sign-in prompt, right = sign-up prompt) */
+  .overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 clamp(20px, 6vw, 40px);
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+  }
+  
+  .overlay-left {
+    transform: translateX(-20%); /* parallax-style offset for a smoother slide effect */
+  }
+  
+  .overlay-right {
+    right: 0;
+    transform: translateX(0);
+  }
+  
+  /* ==========================================================================
+     SOCIAL LOGIN ICONS
+     ========================================================================== */
+  .social-container {
+    margin: var(--spacing-md) 0;
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+  }
+  
+  .social-container a {
+    border: 1px solid #dddddd;
+    border-radius: 50%; /* circular icon buttons */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: clamp(35px, 8vw, 40px);
+    width: clamp(35px, 8vw, 40px);
+    min-height: 44px; /* Touch target size (overrides the clamp height on small screens for accessibility) */
+    min-width: 44px;
+    font-size: clamp(14px, 3vw, 16px);
+  }
+  
+  /* ==========================================================================
+     CONTAINER QUERIES
+     Responsive rules based on the size of `.container` itself (via
+     container-type: inline-size above), rather than the whole viewport.
+     Useful because this component can be embedded at different widths.
+     ========================================================================== */
+  @container (max-width: 768px) {
+    .container {
+      min-height: min(600px, 90vh);
+    }
+  
+    .form-container {
+      width: 100%; /* stack sign-in/sign-up full-width instead of side-by-side */
+    }
+  
+    .sign-in-container,
+    .sign-up-container {
+      width: 100%;
+    }
+  
+    .overlay-container {
+      display: none; /* no room for the sliding color panel on narrow containers */
+    }
+  }
+  
+  @container (max-width: 480px) {
+    .container {
+      min-height: min(700px, 95vh);
+      border-radius: 8px;
+    }
+  
+    form {
+      padding: 0 var(--spacing-md);
+    }
+  
+    button {
+      padding: var(--spacing-xs) var(--spacing-lg);
+      font-size: var(--text-xs);
+    }
+  }
+  
+  /* ==========================================================================
+     MEDIA QUERIES — VIEWPORT-BASED RESPONSIVENESS
+     Fallback/complementary rules based on the actual browser viewport size
+     (needed because container queries alone don't affect `body` layout).
+     ========================================================================== */
+  @media (max-width: 768px) {
+    body {
+      padding: var(--spacing-sm);
+      height: auto;
+      min-height: 100vh;
+    }
+  
+    .container {
+      width: 100%;
+      max-width: 100%;
+    }
+  
+    /* On mobile the overlay is hidden, so panel switching is done by
+       sliding the sign-up form fully into view instead */
+    .container.right-panel-active .sign-in-container {
+      transform: translateX(100%);
+    }
+  
+    .container.right-panel-active .sign-up-container {
+      transform: translateX(100%);
+      opacity: 1;
+      z-index: 5;
+    }
+  
+    .overlay-container {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+      padding: var(--spacing-xs);
+      margin: 0;
+    }
+  
+    h1 {
+      font-size: var(--text-xl);
+    }
+  
+    p {
+      margin: var(--spacing-sm) 0;
+    }
+  
+    .social-container {
+      margin: var(--spacing-sm) 0;
+    }
+  
+    input {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      font-size: var(--text-sm);
+    }
+  }
+  
+  /* Landscape mobile: reduce vertical spacing and allow the form to scroll
+     internally since height is constrained */
+  @media (max-height: 600px) and (orientation: landscape) {
+    body {
+      padding: var(--spacing-xs);
+    }
+  
+    .container {
+      min-height: min(500px, 95vh);
+    }
+  
+    form {
+      padding: 0 var(--spacing-sm);
+      justify-content: flex-start; /* align fields to top instead of centering when space is tight */
+      overflow-y: auto; /* allow scrolling within the form if content is taller than the viewport */
+    }
+  
+    .social-container {
+      margin: var(--spacing-xs) 0;
+    }
+  
+    input {
+      margin: 4px 0;
+      padding: 8px 12px;
+    }
+  }
+  
+  /* Large screens: give the card more breathing room */
+  @media (min-width: 1200px) {
+    .container {
+      width: min(900px, 80vw);
+      min-height: 550px;
+    }
+  }
+  
+  /* ==========================================================================
+     ACCESSIBILITY / USER PREFERENCE MEDIA QUERIES
+     ========================================================================== */
+  
+  /* Respect users who have requested reduced motion at the OS level */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Strengthen borders for users who need higher contrast */
+  @media (prefers-contrast: high) {
+    button {
+      border-width: 2px;
+    }
+  
+    input {
+      border: 1px solid #000;
+    }
+  }
+  
+  /* Dark mode palette, applied automatically based on OS/browser preference */
+  @media (prefers-color-scheme: dark) {
+    body {
+      background: #121212;
+    }
+  
+    .container {
+      background-color: #1e1e1e;
+      color: #ffffff;
+    }
+  
+    form {
+      background-color: #2d2d2d;
+      color: #ffffff;
+    }
+  
+    input {
+      background-color: #3d3d3d;
+      color: #ffffff;
+      border: 1px solid #555;
+    }
+  
+    a {
+      color: #bb86fc;
+    }
+  }
+  
+  /* ==========================================================================
+     FOOTER
+     Fixed to the bottom of the viewport on larger screens.
+     ========================================================================== */
+  footer {
+    background-color: #222;
+    color: #fff;
+    font-size: var(--text-xs);
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+    padding: var(--spacing-xs);
+  }
+  
+  footer p {
+    margin: var(--spacing-xs) 0;
+    font-size: var(--text-xs);
+  }
+  
+  footer i {
+    color: red; /* e.g. used for a heart icon like "Made with ♥" */
+  }
+  
+  footer a {
+    color: #3c97bf;
+    text-decoration: none;
+  }
+  
+  /* On smaller screens, un-fix the footer so it doesn't overlap page content */
+  @media (max-width: 768px) {
+    footer {
+      position: relative;
+      margin-top: var(--spacing-md);
+    }
+  }
+  
+  /* ==========================================================================
+     ANIMATIONS
+     ========================================================================== */
+  
+  /* Delays the sign-up form's visual "pop-in" until it's halfway through
+     its slide transition, avoiding a flash of overlapping content */
+  @keyframes show {
+    0%,
+    49.99% {
+      opacity: 0;
+      z-index: 1;
+    }
+  
+    50%,
+    100% {
+      opacity: 1;
+      z-index: 5;
+    }
+  }
+  
+  /* ==========================================================================
+     DESKTOP PANEL-SWITCHING LOGIC
+     Toggling the `.right-panel-active` class (typically via JS on a
+     "Sign Up" / "Sign In" button click) slides the forms and overlay
+     to reveal the sign-up panel instead of sign-in.
+     ========================================================================== */
+  .container.right-panel-active .sign-in-container {
+    transform: translateX(100%); /* push sign-in off to the right, out of view */
+  }
+  
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(100%); /* slide sign-up into the visible left half */
     opacity: 1;
     z-index: 5;
+    animation: show 0.6s; /* fade it in partway through the slide */
   }
-}
-
-/* Desktop layout rules */
-.container.right-panel-active .sign-in-container {
-  transform: translateX(100%);
-}
-
-.container.right-panel-active .sign-up-container {
-  transform: translateX(100%);
-  opacity: 1;
-  z-index: 5;
-  animation: show 0.6s;
-}
-
-.container.right-panel-active .overlay-container {
-  transform: translateX(-100%);
-}
-
-.container.right-panel-active .overlay {
-  transform: translateX(50%);
-}
-
-.container.right-panel-active .overlay-left {
-  transform: translateX(0);
-}
-
-.container.right-panel-active .overlay-right {
-  transform: translateX(20%);
-}
+  
+  .container.right-panel-active .overlay-container {
+    transform: translateX(-100%); /* slide the colored overlay to the opposite side */
+  }
+  
+  .container.right-panel-active .overlay {
+    transform: translateX(50%); /* reposition the gradient within the wider overlay */
+  }
+  
+  .container.right-panel-active .overlay-left {
+    transform: translateX(0); /* reset parallax offset when sign-up is active */
+  }
+  
+  .container.right-panel-active .overlay-right {
+    transform: translateX(20%); /* push the "welcome back" panel further right */
+  }

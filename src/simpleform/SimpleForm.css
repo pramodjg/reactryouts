@@ -4,10 +4,16 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   padding: 10px 20px;
   transition: transform 0.2s;
-  width: 500px;
+  width: 100%;        /* was 500px */
+  max-width: 500px;   /* caps it on large screens, shrinks on small */
+  box-sizing: border-box;
   text-align: center;
   margin: auto;
   margin-top: 20px;
+}
+.App img {
+  max-width: 100%;
+  height: auto;
 }
 .datafrminput
 {
@@ -68,4 +74,9 @@ label
   width: 100%; /* make the div full width */
   justify-content:center; /* make the flex items space around */
   margin-top: 10px;
+}
+.form-logo
+{
+  width: 96px;
+  height: 96px;
 }

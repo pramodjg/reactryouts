@@ -15,19 +15,16 @@
     
 }
 
-input
-{
-  display: block; /* make the input a block element */
-  width: 100%; /* make the input full width */
-  padding-left: 10px;
-  padding-top: 10px; /* add padding to the top of the input */
-  padding-bottom: 10px; /* add padding to the bottom of the input */
-  border-radius: 20px;
-  height: 24px;
-  border-width: 1px;
-  margin-bottom: 10px;
-  
+input {
+  background-color: #eee;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin: var(--spacing-xs) 0;
+  width: 100%;
+  font-size: var(--text-md);
+  min-height: 44px; /* Touch target size */
 }
+
 input::placeholder
 {
   color: darkgrey;

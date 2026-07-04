@@ -41,7 +41,7 @@ const handleReset = () => {
   return (
     <div className="App">
       <h3> Simple Form in ReactJS</h3>
-      <img src={infologo} width="240" height="240"></img>
+      <img src={infologo}  className="form-logo"></img>
       <form>
         <label htmlFor="username" >First Name</label>
         <input type="text" className='datafrminput' placeholder="Enter your name" id="username" value={userName} onChange={(e)=>setUserName(e.target.value)} />

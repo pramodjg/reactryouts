@@ -6,7 +6,7 @@ const Details = ({ item }) => {
   if (!item) {
     return <div className="details-section">Select an item from the menu.</div>;
   }
- if(item.name="Form Demo")
+ if(item.name=="Form Demo")
  {
    return (<SimpleForm></SimpleForm>)
  }
