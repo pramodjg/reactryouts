@@ -1,49 +1,71 @@
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
-import { AuthProvider } from "./authtokendemo/context/AuthContext";
-import ProtectedRoute from "./authtokendemo/components/ProtectedRoute";
-import AuthenticatedRoute from "./authtokendemo/components/AuthenticatedRoute";
-import Login from "./authtokendemo/components/Login";
-import Dashboard from "./authtokendemo/components/Dashboard";
-import About from "./authtokendemo/components/About";
-import "./authtoken.css";
-
-function App() {
-  return (
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate,
+  } from "react-router-dom";
+  import { AuthProvider } from "./authtokendemo/context/AuthContext";
+  import ProtectedRoute from "./authtokendemo/components/ProtectedRoute";
+  import AuthenticatedRoute from "./authtokendemo/components/AuthenticatedRoute";
+  import Login from "./authtokendemo/components/Login";
+  import Dashboard from "./authtokendemo/components/Dashboard";
+  import About from "./authtokendemo/components/About";
+  import "./authtoken.css";
+  
+  function App() {
+    return (
+      // Wrap the entire app in AuthProvider so any component can access
+      // auth state (user, token, login/logout functions) via context
       <AuthProvider>
-          <Router>
-              <div className="App">
-                  <Routes>
-                      <Route
-                          path="/login"
-                          element={
-                              <AuthenticatedRoute>
-                                  <Login />
-                              </AuthenticatedRoute>
-                          }
-                      />
-                      <Route path="/about-us" element={<About />} />
-                      <Route
-                          path="/dashboard"
-                          element={
-                              <ProtectedRoute>
-                                  <Dashboard />
-                              </ProtectedRoute>
-                          }
-                      />
-                      <Route path="/" element={<Navigate to="/dashboard" replace />} />
-                      <Route path="*" element={<h1>404</h1>} />
-                  </Routes>
-              </div>
-          </Router>
+        {/* Router enables client-side navigation between pages without full page reloads */}
+        <Router>
+          <div className="App">
+            <Routes>
+              {/* Login route
+                  - Wrapped in AuthenticatedRoute, which redirects already-logged-in
+                    users away from /login (e.g. to /dashboard) so they can't
+                    revisit the login page while a session is active */}
+              <Route
+                path="/login"
+                element={
+                  <AuthenticatedRoute>
+                    <Login />
+                  </AuthenticatedRoute>
+                }
+              />
+  
+              {/* Public route - accessible to everyone, no auth check needed */}
+              <Route path="/about-us" element={<About />} />
+  
+              {/* Dashboard route
+                  - Wrapped in ProtectedRoute, which redirects unauthenticated
+                    users away (e.g. to /login) since this page requires a
+                    logged-in session */}
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+  
+              {/* Root path redirects straight to /dashboard.
+                  ProtectedRoute on /dashboard will then handle sending
+                  unauthenticated users to /login if needed.
+                  `replace` avoids adding this redirect to browser history. */}
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+  
+              {/* Catch-all for any unmatched route */}
+              <Route path="*" element={<h1>404</h1>} />
+            </Routes>
+          </div>
+        </Router>
       </AuthProvider>
-  );
-}
-export default App;
+    );
+  }
+  
+  export default App;
 
 /* Old Code */
 // import { useState } from 'react'
